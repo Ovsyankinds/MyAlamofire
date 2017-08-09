@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     var arr = [String]()
     
-    @IBOutlet weak var tableView: UITableView!
+   @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,20 @@ class ViewController: UIViewController {
                 print("JSON: \(json)") // serialized json response
                 print("------------")
                 
-                do{
+                let myJson = json as! Dictionary <String, AnyObject>
+                
+                //print(myJson["eye_color"]!)
+                
+                self.arr.append((myJson["name"] as? String)!)
+                self.arr.append((myJson["hair_color"] as? String)!)
+                self.arr.append((myJson["eye_color"] as? String)!)
+                self.arr.append(String((myJson["height"] as? String)!)!)
+                self.arr.append(String((myJson["mass"] as? String)!)!)
+                
+                self.tableView.reloadData()
+                
+                
+                /*do{
                 let myJson = try JSONSerialization.jsonObject(with: response.data!, options: []) as! [String: AnyObject]
                     
                     
@@ -41,7 +54,7 @@ class ViewController: UIViewController {
                     print(self.arr)
                 } catch{
                     print("Error")
-                }
+                }*/
                 
             }
             
@@ -75,7 +88,6 @@ extension ViewController: UITableViewDataSource{
     }
     
 }
-
 
 
 
